@@ -161,6 +161,49 @@ The workflow will:
 3. Trigger Easypanel deployment
 4. Send WhatsApp notification about the deployment status
 
+## Testing Workflows
+
+You can test the workflows using our test workflow. Go to the "Actions" tab in your repository and select "Test Workflows".
+
+### Available Tests
+
+1. **WhatsApp Only Test**
+   - Tests only the WhatsApp notification functionality
+   - Sends a test message to your configured WhatsApp group
+
+2. **Secrets Verification**
+   - Verifies all required secrets are properly configured
+   - Tests connection to Easypanel API
+   - Sends success notification via WhatsApp
+
+3. **Docker Build Test**
+   - Tests Docker image building process
+   - Verifies Docker Hub credentials
+   - Does not push the image
+   - Sends build status via WhatsApp
+
+4. **Test All**
+   - Runs all the above tests in sequence
+
+### How to Run Tests
+
+1. Go to your repository on GitHub
+2. Navigate to the "Actions" tab
+3. Select "Test Workflows" from the workflows list
+4. Click "Run workflow"
+5. Select the type of test you want to run
+6. Click "Run workflow"
+
+You'll receive WhatsApp notifications about the test results.
+
+### Troubleshooting Tests
+
+If tests fail, check:
+1. Secret configurations in GitHub repository settings
+2. Docker Hub credentials and permissions
+3. Easypanel API access and connectivity
+4. WhatsApp API connectivity and group ID
+
 ## Troubleshooting
 
 1. Authentication errors:
