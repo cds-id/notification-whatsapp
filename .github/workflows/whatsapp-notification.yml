@@ -1,0 +1,33 @@
+name: WhatsApp Notification
+on:
+  workflow_call:
+    inputs:
+      message:
+        required: true
+        type: string
+        description: 'Message to be sent'
+      phone:
+        required: true
+        type: string
+        description: 'Phone number or group ID (format: xxx@g.us for groups)'
+      host:
+        required: true
+        type: string
+        description: 'WhatsApp API host URL'
+    secrets:
+      basic_auth:
+        required: true
+        description: 'Basic auth credentials'
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send WhatsApp Message
+        run: |
+          curl "${{ inputs.host }}/send/message" \
+            -H 'accept: application/json' \
+            -H "authorization: Basic ${{ secrets.basic_auth }}" \
+            -H 'content-type: application/json' \
+            -H 'cache-control: no-cache' \
+            --data-raw "{\"phone\":\"${{ inputs.phone }}\",\"message\":\"${{ inputs.message }}\"}"
